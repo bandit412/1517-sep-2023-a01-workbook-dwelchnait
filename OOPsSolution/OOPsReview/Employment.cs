@@ -88,6 +88,16 @@ namespace OOPsReview
                 }
                 _Level = value;
             }
+        }
+        // this property is an example of an auto-implemented property
+        // there is no validation within the property
+        // there is NO private data member for this property
+        //  the system will generate an internal storage area for the data
+        //      and handle the setting and getting from that storage
+        // auto-implemented properties can have either a public or private set
+        // using a public or private set is a design decision
+        public DateTime StartDate { get; private set; }
+
         #endregion
 
         #region Constructors
