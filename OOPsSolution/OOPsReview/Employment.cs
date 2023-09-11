@@ -18,6 +18,7 @@ namespace OOPsReview
 
         private string _Title;
         private double _Years;
+        SupervisoryLevel _Level;
         #endregion
 
         #region Behaviours (aka methods)
@@ -62,6 +63,31 @@ namespace OOPsReview
                 _Years = value;
             }
         }
+        public SupervisoryLevel Level
+        {
+            get { return _Level; }
+            private set
+            {
+                // a private set means that the property
+                //      can only be set via code within
+                //      a constructor or a another method/property
+                //      within the class
+                // this property mutator cannot be accessed directly
+                //      by logic outside of this class
+                // an advantage of doing this is increasing security
+                //      on the field as any change is under the
+                //      control of the class
+                //
+                // you can validate that an acceptable integer value
+                //      was passed into this property
+                // syntax:  Enum.IsDefined(typeof(xxxx), value)
+                //              where xxx is the enum name
+                if (!Enum.IsDefined(typeof(SupervisoryLevel), value))
+                {
+                    throw new ArgumentException($"SupervisoryLevel is invalid {value}");
+                }
+                _Level = value;
+            }
         #endregion
 
         #region Constructors
