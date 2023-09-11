@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@ namespace OOPsReview
 
         private string _Title;
         private double _Years;
-        SupervisoryLevel _Level;
+        private SupervisoryLevel _Level;
         #endregion
 
         #region Behaviours (aka methods)
@@ -101,6 +102,79 @@ namespace OOPsReview
         #endregion
 
         #region Constructors
+        //Constructors
+
+        //the purpose of a constructor is to create an instance of your
+        //  class in a known state
+
+        //does a class need a constructor? NO
+        //  if a class does NOT have a constructor then the system will
+        //      create the instance and assign the system default value to data
+        //      member and/or auto implemented property
+        //  if you have no constructor the common phrase is "using a system constructor"
+
+        //IF YOU CODE A CONSTRUCTOR IN YOUR CLASS YOU ARE RESPONSIBLE FOR ANY AND ALL
+        //  CONSTRUCTOR FOR THE CLASS!!!
+
+        // default constructor
+        //you can apply your own literal values for your data memebers and/or auto-implemented
+        //  properties that differ from the system default values
+        //why?
+        //  you may have data that is validated and using the system default values that would
+        //  cause an exception
+
+        //constructors DO NOT have a return datatype in their header definition
+        //constructors CANNOT be called directly by an developer logic
+        //constructors are referenced (called) indirectly by using the "new" command
+        public Employment()
+        {
+            Title = "Unknown";
+            Level = SupervisoryLevel.TeamMember;
+            StartDate = DateTime.Today;
+        }
+
+        //greedy constructor
+
+        //a greedy constructor is one that accepts a parameter list of values
+        //  to assign to your instance data on creation of the instance
+        //generally your greedy constructor constaints a parameter on the signature
+        //  for each data member/auto-implemented property in your class definition
+
+        //if you have any default values for your parameters, the default parameters
+        //  must appear AFTER the non-default parameters in the parameter list
+        //in this example we will default Years to 0
+        public Employment(string title, DateTime startdate,
+                            SupervisoryLevel level = SupervisoryLevel.TeamMember,
+                            double years = 0.0)
+        {
+            Title=title;
+            Level = level;
+            //Years = years;
+
+            //you can add logic to your constructor to ensure that the incoming value
+            //  is valid
+            //this is useful for auto-implemented properties
+            //this is useful for private sets which do not contain validation code
+            
+            //in this example we will ensure that the startdate is not a day in the future
+            if(startdate >= DateTime.Today.AddDays(1))
+            {
+                throw new ArgumentException($"The start date {startdate} is in the future");
+            }
+            StartDate = startdate;
+
+            // one can add additional logic to adjust your starting values
+            // ensure that years is appropriate for the entered startdate
+            if (years > 0.0)
+            {
+                Years = years;
+            }
+            else
+            {
+                TimeSpan span =  DateTime.Now - StartDate;
+                Years = Math.Round((span.Days / 365.25), 1);
+            }
+        }
         #endregion
     }
 }
