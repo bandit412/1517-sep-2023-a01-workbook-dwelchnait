@@ -23,6 +23,49 @@ namespace OOPsReview
         #endregion
 
         #region Behaviours (aka methods)
+        //Behaviours (aka methods)
+
+        //method syntax:  accesslevel [override][static] rdt methodname ([list of parameters])
+        //                  { ...... }
+
+        public void SetEmploymentResponsibilityLevel( SupervisoryLevel level )
+        {
+            //the property has a private set
+            //therefore the only ways to assign a value to the property
+            //  is via a) constructor, b) another property, or c) a method
+
+            //what about validation?
+            //validation can be done in multiple places
+            //  a) can it be done in this method?   Yes
+            //  b) can it be done within the property? Yes if the property if fully-implemented
+            Level = level;
+        }
+
+        public void CorrectStartDate(DateTime startdate)
+        {
+            //Property StartDate is auto-implementd
+            //Property StartDate has NO validation
+            //If you need to do any validation on the incoming value
+            //  you will need to do the validation in the method
+            //in this example we will ensure that the startdate is not a day in the future
+            if (startdate >= DateTime.Today.AddDays(1))
+            {
+                throw new ArgumentException($"The start date {startdate} is in the future");
+            }
+            StartDate = startdate;
+        }
+
+        public double UpdateCurrentEmploymentYearsExperience()
+        {
+            TimeSpan span = DateTime.Now - StartDate;
+            Years = Math.Round((span.Days / 365.25), 1);
+            return Years;
+        }
+
+        public override string ToString()
+        {
+            return $"{Title},{Level},{StartDate.ToString("MMM dd,yyyy")},{Years}";
+        }
         #endregion
 
         #region Properties
