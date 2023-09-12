@@ -100,7 +100,10 @@ namespace OOPsReview
             //ensure that the title have value (not empty)
             set
             {
-                if (value < 0.0)
+                //if (value < 0.0)
+
+                //use the Utilities class method to check the data value
+                if(!Utilities.IsZeroOrPositive(value))
                 {
                     throw new ArgumentException($"Employment years ({value}) cannot be a negative value");
                 }
