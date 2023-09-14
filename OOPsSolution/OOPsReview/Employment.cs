@@ -64,7 +64,7 @@ namespace OOPsReview
 
         public override string ToString()
         {
-            return $"{Title},{Level},{StartDate.ToString("MMM dd,yyyy")},{Years}";
+            return $"{Title},{Level},{StartDate.ToString("MMM dd yyyy")},{Years}";
         }
         #endregion
 
@@ -105,7 +105,7 @@ namespace OOPsReview
                 //use the Utilities class method to check the data value
                 if(!Utilities.IsZeroOrPositive(value))
                 {
-                    throw new ArgumentException($"Employment years ({value}) cannot be a negative value");
+                    throw new ArgumentOutOfRangeException($"Employment years ({value}) cannot be a negative value");
                 }
                 _Years = value;
             }
@@ -189,8 +189,7 @@ namespace OOPsReview
         //if you have any default values for your parameters, the default parameters
         //  must appear AFTER the non-default parameters in the parameter list
         //in this example we will default Years to 0
-        public Employment(string title, DateTime startdate,
-                            SupervisoryLevel level = SupervisoryLevel.TeamMember,
+        public Employment(string title, SupervisoryLevel level, DateTime startdate,
                             double years = 0.0)
         {
             Title=title;
