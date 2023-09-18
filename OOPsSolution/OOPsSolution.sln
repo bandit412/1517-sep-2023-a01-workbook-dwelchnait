@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPsReview", "OOPsReview\OO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnirTestinForSystem", "UnirTestinForSystem\UnirTestinForSystem.csproj", "{BD055A27-2B87-4A0F-9E8F-A021F1BBFB6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandBox", "SandBox\SandBox.csproj", "{DAA25743-DF59-43FF-8F07-628DC764A58E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SandBox", "SandBox\SandBox.csproj", "{DAA25743-DF59-43FF-8F07-628DC764A58E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDUnitTestDemo", "TDDUnitTestDemo\TDDUnitTestDemo.csproj", "{8ECB6432-90E9-4E6B-BBDD-BB373BEF57F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{DAA25743-DF59-43FF-8F07-628DC764A58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAA25743-DF59-43FF-8F07-628DC764A58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAA25743-DF59-43FF-8F07-628DC764A58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ECB6432-90E9-4E6B-BBDD-BB373BEF57F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ECB6432-90E9-4E6B-BBDD-BB373BEF57F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ECB6432-90E9-4E6B-BBDD-BB373BEF57F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ECB6432-90E9-4E6B-BBDD-BB373BEF57F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
