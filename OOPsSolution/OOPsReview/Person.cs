@@ -17,6 +17,8 @@ namespace OOPsReview
 
         public string FullName { get { return LastName + ", " + FirstName; } }
 
+        public int NumberOfEmployments { get { return EmploymentPositions.Count; } }
+
         public Person()
         {
             FirstName = "unknown";
