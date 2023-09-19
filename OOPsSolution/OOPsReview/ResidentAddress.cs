@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOPsReview
 {
-    public record Residence(int Number, string Street, string City,
+    public record ResidentAddress(int Number, string Street, string City,
                             string Province, string PostalCode)
     {
         //this new datatype behaves very much like a class
