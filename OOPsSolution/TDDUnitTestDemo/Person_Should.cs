@@ -106,6 +106,40 @@ namespace TDDUnitTestDemo
             numberofemployments.Should().Be(expectednumberofemployments);
 
         }
+        [Fact]
+        public void Allow_Change_to_First_Name()
+        {
+            //Arrange (setup)
+            //prepare for the test: setting expected results, creating/declaring test data
+           
+            Person sut = Create_Test_Person();
+            string expectedfirstname = "Lowan";
+
+            //Act (the execution of your test)
+            // sut : subject under test
+           sut.FirstName = expectedfirstname;
+
+            //Assert (testing of the results of the Act)
+            sut.FirstName.Should().Be(expectedfirstname);
+
+        }
+        [Fact]
+        public void Allow_Change_to_Last_Name()
+        {
+            //Arrange (setup)
+            //prepare for the test: setting expected results, creating/declaring test data
+
+            Person sut = Create_Test_Person();
+            string expectedlastname = "Behold";
+
+            //Act (the execution of your test)
+            // sut : subject under test
+            sut.LastName = expectedlastname;
+
+            //Assert (testing of the results of the Act)
+            sut.LastName.Should().Be(expectedlastname);
+
+        }
 
 
         #region Support Methods
@@ -116,6 +150,13 @@ namespace TDDUnitTestDemo
             employments.Add(new Employment("Beginner Programmer", SupervisoryLevel.TeamLeader, DateTime.Parse("Oct 2, 2021")));
 
             return employments;
+        }
+
+        public Person Create_Test_Person()
+        {
+            ResidentAddress address = new ResidentAddress(123, "Maple St", "Edmonton", "AB", "T6Y7U8");
+            List<Employment> employments = Create_List_of_Employments();
+            return new Person("Don", "Welch", address, employments);
         }
         #endregion
     }
