@@ -8,7 +8,20 @@ namespace OOPsReview
 {
     public class Person
     {
-        public string FirstName { get; set; }
+        private string _FirstName;
+        private string _LastName;
+        public string FirstName 
+        {
+            get { return _FirstName; } 
+            set
+            {
+                if(string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("First name must be supplied,");
+                }
+                _FirstName = value;
+            }
+        }
         public string LastName { get; set; }
 
         public ResidentAddress Address { get; set; }
@@ -27,6 +40,11 @@ namespace OOPsReview
         }
         public Person(string firstname, string lastname, ResidentAddress address, List<Employment> employlmentpositions)
         {
+           
+            if (string.IsNullOrWhiteSpace(lastname))
+            {
+                throw new ArgumentNullException("Last name is required.");
+            }
             FirstName = firstname;
             LastName = lastname;
             Address = address;
@@ -36,5 +54,20 @@ namespace OOPsReview
             }
         }
 
+        public void ChangeName(string firstname, string lastname)
+        {
+           
+            if (string.IsNullOrWhiteSpace(lastname))
+            {
+                throw new ArgumentNullException("Last name is required.");
+            }
+            FirstName = firstname;
+            LastName = lastname;
+        }
+
+        public void AddEmployment(Employment employment) 
+        { 
+            EmploymentPositions.Add(employment);
+        }
     }
 }

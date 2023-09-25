@@ -221,5 +221,63 @@ namespace OOPsReview
             }
         }
         #endregion
-    }
+    
+    
+        //Parsing(string)
+
+        //attempts to change the contents of a string to another datatype
+        //this method contains basic validation on the number of fields
+        //  if there are insufficient values then expected an error can be thrown
+        //example
+        //    string 55 --> int x = int.Parse(string); <-- success
+        //           bob --> int x = int.Parse(string); <-- abort with a message
+
+        //if this can be done on an int class why not on our Employment class?
+        //we will need to add a method (Parse) that receives a string
+        //  the string will need to have sufficient values to create a proper Employment
+
+        public static Employment Parse(string item)
+        {
+            //test is a string of csv values (comma separated values)
+            //   note you could use some other delimator
+            //separate the string of values into individual string values
+            //      create an array of strings resulting fromusing .Split(delimator)
+            string[] pieces = item.Split(',');
+
+            //verify that sufficient and correct number of values exist to
+            //  create the Employment instance
+            if(pieces.Length != 4 )
+            {
+                throw new FormatException($"String not in expected format. Missing/excessive value(s) {item}");
+            }
+
+            //return an instance of Employment
+            // the instance will be created by the separate pieces
+            // the pieces will be converted if required using the appropriate parsing
+
+            return new Employment(pieces[0],
+                                    (SupervisoryLevel)Enum.Parse(typeof(SupervisoryLevel),pieces[1]),
+                                    DateTime.Parse(pieces[2]),
+                                    double.Parse(pieces[3]));         
+
+        }
+
+        //the TryParse method will receive a string AND output an instance of
+        //  Employment as an output parameter AND return a boolean success value
+
+        //syntax:   .TryParse    xxxx.TryParse(string, out datatype parametername)
+        //example   int.TryParse   int.TryParse(inputValue, out int myIntegerNumber)
+
+        //the method will return a boolean value indicate success
+        //to avoid duplicate code; this method will call .Parse()
+
+        public static bool TryParse(string item, out Employment result)
+        {
+            result = null;
+            //you do not have to capture the error message if throw from Parse
+
+            return true;
+        }
+        
+     }
 }
