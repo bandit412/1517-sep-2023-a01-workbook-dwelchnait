@@ -1,0 +1,84 @@
+﻿@page "/basicevents"
+<!-- the page directive MUST be the first physical line in the file
+        it is a routing identifier string used to link your menu item
+        it is not case sensitive
+-->
+<PageTitle>Basic Events</PageTitle>
+<h3>Basic Button Events</h3>
+
+@if (!string.IsNullOrWhiteSpace(feedback))
+{
+    <p>@feedback</p>
+}
+
+<label for="dataitem">
+    <input type="text" @bind="inputValue" placeholder="enter a string" />
+</label>
+<br />
+<br />
+<button type="submit" id="forjavascript" name="csharpidentifier"
+    value="datavalueforbutton"
+    @onclick="OnFirstButtonClick" class="btn btn-primary">
+    Press me (submit component for execution of method OnFirstButtonClick)
+</button>
+<br/><br/>
+<button type="submit" 
+@onclick="DataInput" class="btn btn-success">
+    Press me (submit component for execution of method DataInput)
+</button>
+@* @code {
+
+    //for the demonstration of using the "code-behind"
+    //  development technique, you would remove the
+    //  code from this coding block and place the code
+    //  within the partial class associated with this
+    //  razor component.
+    //you code leave the @code { } syntax within this
+    //  page if you wish
+    //you could if you so desire have code in BOTH
+    //  the code-behind AND this coding block as long
+    //  as there is no conflict
+
+
+
+    //variables that are used on your html content
+    //  MUST be declared in this C# coding block
+    private string feedback;
+    private Random rnd = new Random();
+
+    //if you have a variable that is bound to an control on your page
+    //  you will need to declare that variable in this coding block
+    private string inputValue;
+
+    //there are points in the staging to render your work as a page
+    //  that you can add your own code to execute along with
+    //  the code in that stage
+
+    //Initialize stage
+    protected override void OnInitialized()
+    {
+        feedback = "on initialization";
+        base.OnInitialized();
+    }
+
+    void OnFirstButtonClick()
+    {
+        int oddeven = rnd.Next(1, 101);
+        if (oddeven % 2 == 0)
+        {
+            feedback = $"the value {oddeven} is even";
+        }
+        else
+        {
+            feedback = $"the value {oddeven} is odd";
+        }
+    }
+
+    void DataInput()
+    {
+        //the data entered into the input control will be place
+        //  for me into the local variable mention with the bind
+        //  attributes
+        feedback = $"you entered >{inputValue}<";
+    }
+} *@
