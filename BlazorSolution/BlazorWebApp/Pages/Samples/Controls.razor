@@ -1,0 +1,47 @@
+﻿@page "/controls"
+<PageTitle>Various Controls</PageTitle>
+<h3>Controls</h3>
+<h4>using multiple components</h4>
+
+<!-- add a custom css file to this page ONLY-->
+<HeadContent>
+    <link href="~/css/mycss.css" rel="stylesheet" />
+</HeadContent>
+
+<section class="row">
+    <h5> data from child component</h5>
+    <p> data: @receivedChildData</p>
+</section>
+
+<section class="row">
+    <!-- a bootstrap row is divide into 12
+        logical columns
+        to create your physical column add a
+           div with a class indicating the number
+           of logical columns to be used as your
+           physical column
+    -->
+    <div class="col-md-3">
+        <h4>Textboxes</h4>
+        <ControlsTextBoxes OnDataSent="HandleDataSent"></ControlsTextBoxes>
+    </div>
+    <div class="col-md-6">
+        <h4>RadioButton/Checkbox/TextArea</h4>
+        <ControlsRadioCheckboxTextArea OnDataSent="HandleDataSent"></ControlsRadioCheckboxTextArea>
+
+    </div>
+    <div class="col-md-3">
+        <h4>Lists/Slider</h4>
+        <ControlsListAndSlider OnDataSent="HandleDataSent"></ControlsListAndSlider>
+
+    </div>
+</section>
+@code {
+    private string receivedChildData;
+
+    //method to process the call back event
+    private void HandleDataSent(string data)
+    {
+        receivedChildData = data;
+    }
+}

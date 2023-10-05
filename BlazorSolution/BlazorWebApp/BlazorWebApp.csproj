@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="Data\SelectionList.cs" />
+  </ItemGroup>
+
 </Project>

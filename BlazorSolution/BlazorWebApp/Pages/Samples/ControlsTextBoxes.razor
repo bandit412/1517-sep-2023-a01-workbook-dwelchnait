@@ -1,0 +1,53 @@
+﻿<h3>ControlsTextBoxes</h3>
+<label>
+    Email input
+    <input type="email" @bind="emailText"
+           placeholder="enter email" />
+</label>
+<br />
+<label>
+    Password input
+    <input type="password" @bind="passwordText"
+           placeholder="enter password" />
+</label>
+<br />
+<label>
+    Date input
+    <input type="date" @bind="datetimeText"
+           placeholder="enter a date" />
+</label>
+<br />
+<button type="submit" value="textbox" id="theTextButton"
+        name="theTextButton" @onclick="TextProcessing">
+    Text Submit
+</button>
+<br/>
+<br/>
+<p>@feedback</p>
+@code {
+    private string emailText;
+    private string passwordText;
+    private DateTime datetimeText;
+    private string feedback;
+
+    //add code to send the data back to the
+    //  parent component (Controls.razor)
+    [Parameter] public string DataToSend{ get; set; }
+    //declare the call back event
+    [Parameter] public EventCallback<string> OnDataSent{ get; set; }
+
+    private void TextProcessing()
+    {
+
+        feedback = $"Email {emailText} -- Password {passwordText} --  DateTime {datetimeText.ToShortDateString()}";
+        
+        //setup the property that will be used to carry data to the
+        //   parent component
+        DataToSend = feedback;
+        //execute an event referred to as a call back
+        //returns control to parent component
+        OnDataSent.InvokeAsync(DataToSend);
+    }
+
+
+}
