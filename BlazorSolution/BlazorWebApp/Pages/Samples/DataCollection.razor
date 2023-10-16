@@ -1,0 +1,83 @@
+﻿@page "/datacollection"
+<PageTitle>Data Collection</PageTitle>
+<!-- the using is the namespace of Employment, SupervisoryLevel and Utilities-->
+@using OOPsReview; 
+
+<h3>Data Collection</h3>
+<h4>write to a csv file</h4>
+
+<blockquote> This component will demonstrate how your page can handle
+    validation messages when you have a number of controls and you are
+    checking the congtent before storing data.
+    This page will input data for an Employment instance, validate the data
+    then write the instance as a csv string to a file. The data will only
+    be written if the data is valid.
+</blockquote>
+<br/>
+@if (feedbackMessage.Length > 0)
+{
+    <div class="alert alert-info">
+        @feedbackMessage
+    </div>
+}
+<!-- this area will handle the display of a collection of error messages
+     this collection can be of any type: array, List, Dictionary,...
+
+     in this example we will use a Dictionary
+-->
+@if (errorDictionary.Count() > 0)
+{
+<div class="alert alert-danger">
+    <p>Please fix the following issues:</p>
+    <ul>
+        @foreach(var message in errorDictionary.Values)
+        {
+            <li>@message</li>
+        }
+    </ul>
+</div>
+
+}
+<fieldset>
+    <div>
+        <label for="title">Postion Title:</label>
+        <input id="title" type="text" @bind="@employmentTitle">
+    </div>
+
+    <div>
+        <!-- we will treat our enum list the same as traversing a collection-->
+        <label for="level">Supervisory Level</label>
+        <select id="level" @bind="employmentLevel">
+            @foreach (var item in Enum.GetValues(typeof(SupervisoryLevel)))
+            {
+                <option value="@item">@item</option>
+                <!-- short form
+                    <option> to the value to be displayed AND returned </option>
+                -->
+            }
+        </select>
+    </div>
+    <div>
+        <label for="startdate">Postion Start Date:</label>
+        <input id="startdate" type="data" @bind="@employmentStartDate">
+    </div>
+    <div>
+        <label for="years">Years:</label>
+        <input id="years" type="number" @bind="@employmentYears">
+    </div>
+</fieldset>
+@code {
+    private string feedbackMessage = ""; //default of a string is null
+
+    //used to hold a collection of keyed values
+    //we will hold the errors messages of your validation
+    //the dictionary entry has two item: a key value and associate string validation
+    //one can serach the dictionary collection using the method .Contains(keyvalue of interest)
+    // in our example Key : error and associate string: message
+    private Dictionary<string, string> errorDictionary = new Dictionary<string, string>();
+
+    private string employmentTitle;
+    private string employmentYears;
+    private string employmentStartDate;
+    private SupervisoryLevel employmentLevel;
+}
