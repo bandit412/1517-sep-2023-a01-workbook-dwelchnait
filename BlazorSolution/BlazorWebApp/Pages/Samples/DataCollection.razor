@@ -36,11 +36,10 @@
         }
     </ul>
 </div>
-
 }
 <fieldset>
     <div>
-        <label for="title">Postion Title:</label>
+        <label for="title">Position Title:</label>
         <input id="title" type="text" @bind="@employmentTitle">
     </div>
 
@@ -58,26 +57,20 @@
         </select>
     </div>
     <div>
-        <label for="startdate">Postion Start Date:</label>
-        <input id="startdate" type="data" @bind="@employmentStartDate">
+        <label for="startdate">Position Start Date:</label>
+        <input id="startdate" type="date" @bind="@employmentStartDate">
     </div>
     <div>
         <label for="years">Years:</label>
         <input id="years" type="number" @bind="@employmentYears">
     </div>
+    <br/><br/>
+    <div>
+        <button type="submit" @onclick="DataProcessing">Collect</button>
+        &nbsp;&nbsp;
+        <button type="submit" @onclick="Clear">Clear</button>
+    </div>
 </fieldset>
 @code {
-    private string feedbackMessage = ""; //default of a string is null
-
-    //used to hold a collection of keyed values
-    //we will hold the errors messages of your validation
-    //the dictionary entry has two item: a key value and associate string validation
-    //one can serach the dictionary collection using the method .Contains(keyvalue of interest)
-    // in our example Key : error and associate string: message
-    private Dictionary<string, string> errorDictionary = new Dictionary<string, string>();
-
-    private string employmentTitle;
-    private string employmentYears;
-    private string employmentStartDate;
-    private SupervisoryLevel employmentLevel;
+  
 }
