@@ -1,0 +1,73 @@
+﻿@page "/readfile"
+<PageTitle>Read CSV File</PageTitle>
+@using OOPsReview; <!-- this is for the Employment class-->
+<h3>Read CSV File</h3>
+
+<br />
+@if (feedbackMessage.Length > 0)
+{
+    <div class="alert alert-info">
+        @feedbackMessage
+    </div>
+}
+<br />
+<br />
+<div class="offset-md-2">
+<button type="submit" @onclick="Reading">Read File</button>
+</div>
+
+<ul>
+    @foreach(Employment line in employments)
+    {
+        <li>@line</li>
+    }
+</ul>
+
+@code {
+    private string feedbackMessage = "";
+    private Employment employment { get; set; }
+    private List<Employment> employments { get; set; } = new();
+
+    void Reading()
+    {
+        try
+        {
+            //in this example we will use relative addressing to
+            //  create the csv file path name
+            //the start of the address will be the root of the
+            //  web application
+            string csvFilePathName = $@"./Data/Employments.csv";
+
+            //reading the csv file using the ReadAllLines method
+            //  returns the complete file broken into individual lines
+            //  and placed in an array
+            Array userdata = null;
+            userdata = System.IO.File.ReadAllLines(csvFilePathName);
+
+            //unpack the array into a collection of Employment instances
+            foreach(string line in userdata)
+            {
+                employment = Employment.Parse(line);
+                employments.Add(employment);
+            }
+
+            feedbackMessage = $"The file contains {employments.Count} lines";
+        }
+        catch (Exception ex)
+        {
+            feedbackMessage = $"Error: {GetInnerException(ex).Message}";
+        }
+    }
+    public Exception GetInnerException(Exception ex)
+    {
+        //drilldown into your exception message until you hit the actual
+        //  real exception message
+        while (ex.InnerException !=null)
+        {
+            ex = ex.InnerException;
+        }
+        //return the real actual message
+        return ex;
+    }
+
+}
