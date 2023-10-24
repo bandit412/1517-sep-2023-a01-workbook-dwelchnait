@@ -1,0 +1,34 @@
+﻿@page "/territories"
+@using WestWindSystem.BLL;
+@using WestWindSystem.Entities;
+<PageTitle>DB Territories</PageTitle>
+<h3>Territory List from Database</h3>
+
+@if (feedbackMessage.Length > 0)
+{
+    <p>@feedbackMessage</p>
+}
+<br/><br/>
+<button class="btn btn-primary" @onclick="GetDBTerritories">Teritory List?</button>
+@code {
+
+    private string feedbackMessage = "";
+
+    [Inject]
+    public TerritoryServices territoryServices{get;set;}
+
+    public List<Territory> territories { get; set; } = new();
+    private void GetDBTerritories()
+    {
+        try
+        {
+            territories = territoryServices.GetTerritories();
+            feedbackMessage = $"Number of Territories on file is {territories.Count}";
+        }
+        catch(Exception ex)
+
+        {
+            feedbackMessage = ex.Message;
+        }
+    }
+}
