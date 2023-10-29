@@ -35,10 +35,13 @@
     </label>
 </div>*@
 
-<!-- collection version dynamic creation-->
+<!-- collection version dynamic creation
+    vertical list
+    horizontal list form-check-inline
+-->
 @foreach (var meal in mealOptions)
 {
-    <div class="form-check">
+    <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="mealRadio" id="@meal" 
                 value="@meal"
                checked="@meal == selectedMeal" @onchange="() => SelectMeal(meal)">
