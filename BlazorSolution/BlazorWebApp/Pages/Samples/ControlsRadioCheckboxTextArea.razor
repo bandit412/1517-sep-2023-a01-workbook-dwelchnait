@@ -36,15 +36,16 @@
 </div>*@
 
 <!-- collection version dynamic creation
-    vertical list
+     add the class to the div tag
+    vertical list none
     horizontal list form-check-inline
 -->
 @foreach (var meal in mealOptions)
 {
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="mealRadio" id="@meal" 
-                value="@meal"
-               checked="@meal == selectedMeal" @onchange="() => SelectMeal(meal)">
+        <input class="form-check-input " type="radio" name="mealRadio" id="@meal" value="@meal"
+               checked="@(selectedMeal == "" ? false:meal == selectedMeal)" 
+               @onchange="() => SelectMeal(meal)">
         <label class="form-check-label" for="@meal">
             @meal
         </label>
@@ -55,6 +56,7 @@
 
 <br />
 <div class="form-check">
+
     <input class="form-check-input" type="checkbox" id="exampleCheckbox" 
                 @bind="acceptanceBox">
     <label class="form-check-label" for="exampleCheckbox">
@@ -113,11 +115,20 @@
 
     //}
 
+    protected override void OnInitialized()
+    {
+        selectedMeal = "";
+        base.OnInitialized();
+    }
     private void SelectMeal(string meal)
     {
         selectedMeal = meal;
     }
 
+    private void Clear()
+    {
+        selectedMeal = "";
+    }
 
     private void RadioCheckArea()
     {
